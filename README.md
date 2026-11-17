@@ -1,6 +1,6 @@
 # KARIRIS — Know Your Career
 
-KARIRIS is a career exploration app built with Laravel 12 (PHP 8.2), Blade, and Neon Postgres. It implements use cases UC-01 to UC-23 from the KARIRIS CDR. The UI follows the Hi-Fi Figma frames: a 440px mobile frame with the PP Telegraf and Klein fonts.
+KARIRIS is a career exploration app built with Laravel 12 (PHP 8.2), Blade, and Supabase Postgres. It implements use cases UC-01 to UC-23 from the KARIRIS CDR. The UI follows the Hi-Fi Figma frames: a 440px mobile frame with the PP Telegraf and Klein fonts.
 
 ## Features
 
@@ -15,7 +15,7 @@ KARIRIS is a career exploration app built with Laravel 12 (PHP 8.2), Blade, and 
 | Bookmark: add, view, remove | UC-18..20 | `/bookmarks` |
 | Day in the Life: routines and project phases, with detail | UC-21..23 | `/profesi/{slug}/day-in-the-life` |
 
-The controllers follow the CDR class diagram. `AkunController` handles accounts and profiles. `ProfessionController` handles professions, bookmarks, Career Match, and Day in the Life. The career-match calculation lives in `app/Services/CareerMatchService.php`. The score is the user's skills, weighted by level (Advanced 1.0, Intermediate 0.85, Basic 0.65), matched against the profession's `kriteria_skill`, which makes up 85%. The other 15% is a bonus when the user's experience fits the profession.
+The controllers follow the CDR class diagram. `AkunController` handles accounts and profiles. `ProfessionController` handles professions, bookmarks, Career Match, and Day in the Life. The career-match calculation lives in `app/Services/CareerMatchService.php`. The score is the user's skills, weighted by level (Advanced 1.0, Intermediate 0.88, Basic 0.65), matched against the profession's `kriteria_skill`, which makes up 85%. The other 15% is a bonus when the user's experience fits the profession. Professions with a 0% match are hidden.
 
 ## Setup
 
@@ -25,23 +25,30 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### Database: Neon Postgres
+### Database: Supabase Postgres
 
-1. Create a project at https://console.neon.tech.
-2. Click **Connect** and copy the connection string.
-3. Paste it into `.env`:
+The app uses the team's existing tables in Supabase. The migrations are **idempotent**: tables that already exist are skipped. Only Laravel's system tables (`sessions`, `cache`, `jobs`, ...) and nullable UI columns are added, such as `profesi.slug`/`gambar` and `fase_kerja.durasi`/`sprint`/`ikon`.
+
+1. In Supabase, click **Connect** and copy the **Session pooler** URI.
+2. Paste it into `.env`:
    ```
    DB_CONNECTION=pgsql
-   DB_URL="postgresql://USER:PASSWORD@ep-xxxx.REGION.aws.neon.tech/neondb?sslmode=require"
+   DB_URL="postgresql://postgres.<project-ref>:<password>@aws-0-<region>.pooler.supabase.com:5432/postgres"
    DB_SSLMODE=require
+   SESSION_DRIVER=file
+   CACHE_STORE=file
    ```
-4. Enable the `pdo_pgsql` and `pgsql` extensions in `php.ini`. With XAMPP, the file is `C:\xampp\php\php.ini`.
-5. Run the migrations and seed the data:
+3. Enable `pdo_pgsql` and `pgsql` in `php.ini`.
+4. Run the migrations and seed:
    ```bash
-   php artisan migrate:fresh --seed
+   php artisan migrate
+   php artisan db:seed
    ```
+   The seeder reads `database/seeders/data/kariris.json` (a snapshot of the team's data) and matches rows by natural key. Existing rows are left alone; it only fills UI columns that are still empty. It is safe to run more than once.
 
-To work offline, set `DB_CONNECTION=sqlite` instead. The schema is compatible with both databases.
+> **Do not** run `migrate:fresh` or `migrate:rollback` against Supabase. They drop the team's tables.
+
+To work offline, use `DB_CONNECTION=sqlite`, then run `php artisan migrate --seed`.
 
 ### Run
 
@@ -57,7 +64,7 @@ Demo account (created by the seeder):
 |---|---|
 | Username | `christinerotua` |
 | Email | `5026241000@its.ac.id` |
-| Password | `nilaiDPP-A` |
+| Password | `kariris123` (all seeded accounts) |
 
 ## Tests
 
@@ -65,7 +72,7 @@ Demo account (created by the seeder):
 php artisan test
 ```
 
-There are 25 feature tests. They cover auth, skill and experience CRUD, ownership checks, the username/password rules, search and filter, bookmarks, Career Match, and Day in the Life.
+There are 25 feature tests. They always run on in-memory SQLite (`phpunit.xml` + a guard in `tests/TestCase.php`), so they never touch Supabase. They cover auth, skill and experience CRUD, ownership checks, the username/password rules, search and filter, bookmarks, Career Match, and Day in the Life.
 
 ## Asset notes
 

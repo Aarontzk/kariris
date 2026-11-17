@@ -70,7 +70,7 @@
             @forelse ($profesi->reviews as $r)
                 <article class="review">
                     <p class="review__name">{{ $r->akun->username }} <span class="stars">{{ str_repeat('★', $r->rating) }}</span></p>
-                    <p class="review__job">{{ $r->jabatan_reviewer }}</p>
+                    @if ($r->jabatan_reviewer)<p class="review__job">{{ $r->jabatan_reviewer }}</p>@endif
                     <p class="review__text">"{{ $r->isi_ulasan }}"</p>
                     <button class="review__more" data-expand="text">Read More</button>
                 </article>

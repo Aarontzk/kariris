@@ -13,7 +13,7 @@ class CareerReview extends Model
 
     protected function casts(): array
     {
-        return ['tanggal' => 'date'];
+        return ['tanggal' => 'date', 'rating' => 'integer'];
     }
 
     public function profesi(): BelongsTo

@@ -30,6 +30,7 @@ class CareerMatchService
 
         return Profesi::with('kategori')->get()
             ->map(fn (Profesi $p) => $this->nilaiProfesi($p, $skillUser->all(), $teksPengalaman))
+            ->filter(fn (array $m) => $m['persen'] > 0) // profesi tanpa kecocokan tidak ditampilkan
             ->sortByDesc('persen')
             ->take($limit)
             ->values();

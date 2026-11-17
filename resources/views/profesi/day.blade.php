@@ -28,6 +28,7 @@
             <div><small>Total aktivitas</small><b>{{ $rutinitas->count() }}</b></div>
             <div><small>Estimasi durasi</small><b>{{ $totalJam }} jam</b></div>
         </div>
+        @if ($rutinitas->isEmpty())<p class="empty">Rutinitas untuk profesi ini belum tersedia.</p>@endif
         @foreach ($rutinitas as $r)
             <button class="acard" data-sheet="{{ json_encode(['nama' => $r->kegiatan, 'sub' => 'Detail Aktivitas', 'deskripsi' => $r->deskripsi, 'chips' => [$r->jamMulai(), $r->durasiMenit().' menit']]) }}">
                 <span class="acard__ic"><x-icon :name="$r->ikon" /></span>
@@ -43,6 +44,7 @@
             <div><small>Total fase</small><b>{{ $fase->count() }}</b></div>
             <div><small>Estimasi durasi</small><b>{{ $totalMinggu }} minggu</b></div>
         </div>
+        @if ($fase->isEmpty())<p class="empty">Fase proyek untuk profesi ini belum tersedia.</p>@endif
         @foreach ($fase as $f)
             <button class="acard" data-sheet="{{ json_encode(['nama' => 'Fase: '.$f->nama_fase, 'sub' => 'Detail Fase Project', 'deskripsi' => $f->deskripsi, 'chips' => [$f->durasi, $f->sprint]]) }}">
                 <span class="acard__ic"><x-icon :name="$f->ikon" /></span>

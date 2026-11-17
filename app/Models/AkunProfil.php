@@ -38,8 +38,7 @@ class AkunProfil extends Authenticatable
     public function bookmarks(): BelongsToMany
     {
         return $this->belongsToMany(Profesi::class, 'bookmarked_profesi')
-            ->withPivot('tanggal_ditandai')
-            ->withTimestamps();
+            ->withPivot('tanggal_ditandai');
     }
 
     /** Batas ganti username: sekali per 30 hari (sesuai copy popup Change Username). */

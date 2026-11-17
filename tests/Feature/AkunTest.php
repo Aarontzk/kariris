@@ -51,9 +51,9 @@ class AkunTest extends TestCase
 
     public function test_login_dengan_username_atau_email(): void
     {
-        $this->post('/login', ['username' => 'christinerotua', 'password' => 'nilaiDPP-A'])->assertRedirect(route('welcome'));
+        $this->post('/login', ['username' => 'christinerotua', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])->assertRedirect(route('welcome'));
         $this->post('/logout');
-        $this->post('/login', ['username' => '5026241000@its.ac.id', 'password' => 'nilaiDPP-A'])->assertRedirect(route('welcome'));
+        $this->post('/login', ['username' => '5026241000@its.ac.id', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])->assertRedirect(route('welcome'));
     }
 
     public function test_login_gagal_dengan_password_salah(): void
@@ -99,7 +99,7 @@ class AkunTest extends TestCase
     public function test_tidak_bisa_menghapus_skill_milik_orang_lain(): void
     {
         $skill = $this->demo()->skills()->first();
-        $lain = AkunProfil::where('username', 'Joko')->first();
+        $lain = AkunProfil::where('username', 'joko')->first();
         $this->actingAs($lain)->delete("/skills/{$skill->id}")->assertForbidden();
     }
 

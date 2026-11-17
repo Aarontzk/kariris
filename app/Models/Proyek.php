@@ -10,6 +10,8 @@ class Proyek extends Model
 {
     protected $table = 'proyek';
 
+    public $timestamps = false;
+
     protected $fillable = ['profesi_id', 'nama_proyek', 'deskripsi'];
 
     public function profesi(): BelongsTo

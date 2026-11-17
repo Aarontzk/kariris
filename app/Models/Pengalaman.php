@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pengalaman extends Model
 {
-    public const TIPE = ['Internship', 'Organization', 'Freelance', 'Part-Time', 'Full-Time', 'Volunteer'];
+    public const TIPE = ['Internship', 'Organization', 'Freelance', 'Part-time', 'Full-time', 'Volunteer'];
 
     protected $table = 'pengalaman';
 

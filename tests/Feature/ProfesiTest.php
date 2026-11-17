@@ -32,7 +32,7 @@ class ProfesiTest extends TestCase
     public function test_search_kata_kunci(): void
     {
         $this->get('/search?q=data')->assertOk()
-            ->assertSee('4 Professions Found') // 3 profesi Data + Product Manager (skill Data Analysis)
+            ->assertSee('3 Professions Found')
             ->assertSee('Data Engineer')
             ->assertDontSee('SAP Consultant');
     }
@@ -60,22 +60,25 @@ class ProfesiTest extends TestCase
 
     public function test_bookmark_simpan_lihat_hapus(): void
     {
+        $this->assertSame(1, $this->akun->bookmarks()->count()); // Data Analyst dari data tim
+
         $this->post('/profesi/uiux-designer/bookmark')->assertSessionHas('toast');
         $this->post('/profesi/uiux-designer/bookmark'); // idempoten
-        $this->assertSame(1, $this->akun->bookmarks()->count());
+        $this->assertSame(2, $this->akun->bookmarks()->count());
 
         $this->get('/bookmarks')->assertOk()->assertSee('UI/UX Designer')->assertDontSee('SAP Consultant');
 
         $this->delete('/profesi/uiux-designer/bookmark');
+        $this->delete('/profesi/data-analyst/bookmark');
         $this->assertSame(0, $this->akun->bookmarks()->count());
         $this->get('/bookmarks')->assertSee('Belum ada profesi');
     }
 
     public function test_career_match_mengurutkan_uiux_teratas(): void
     {
-        $res = $this->getJson('/career-match')->assertOk()->assertJsonCount(3);
+        $res = $this->getJson('/career-match')->assertOk()->assertJsonCount(2); // profesi 0% disaring
         $this->assertSame('UI/UX Designer', $res->json('0.profesi'));
-        $this->assertSame([93, 78, 61], array_column($res->json(), 'persen'));
+        $this->assertSame([61, 25], array_column($res->json(), 'persen'));
         $this->assertContains('Figma', $res->json('0.dimiliki'));
     }
 
@@ -104,6 +107,6 @@ class ProfesiTest extends TestCase
     public function test_profesi_tidak_ada_404(): void
     {
         $this->get('/profesi/tidak-ada')->assertNotFound();
-        $this->assertSame(9, Profesi::count());
+        $this->assertSame(7, Profesi::count());
     }
 }

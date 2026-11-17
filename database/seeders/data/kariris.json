@@ -1,0 +1,497 @@
+{
+  "kategori": [
+    "Technology & Data",
+    "Business & Consulting",
+    "Design & Creative"
+  ],
+  "akun": [
+    {
+      "username": "christinerotua",
+      "email": "5026241000@its.ac.id",
+      "phone_number": "085900000000",
+      "skills": [
+        {
+          "nama_skill": "Story Telling",
+          "level": "Intermediate"
+        },
+        {
+          "nama_skill": "User Research",
+          "level": "Intermediate"
+        },
+        {
+          "nama_skill": "Figma",
+          "level": "Advanced"
+        }
+      ],
+      "pengalaman": [
+        {
+          "tipe": "Internship",
+          "posisi": "UI/UX Designer Intern",
+          "perusahaan": "Tokopedia",
+          "tanggal_mulai": "2024-06-01",
+          "tanggal_selesai": "2024-08-31",
+          "deskripsi": "Redesign halaman checkout, riset user bersama tim produk, dan membuat komponen design system."
+        },
+        {
+          "tipe": "Organization",
+          "posisi": "Head of Creative Department",
+          "perusahaan": "University",
+          "tanggal_mulai": "2023-01-01",
+          "tanggal_selesai": "2024-12-31",
+          "deskripsi": "Memimpin tim desain 8 orang untuk kebutuhan publikasi acara kampus."
+        }
+      ]
+    },
+    {
+      "username": "messi",
+      "email": "messi@example.com",
+      "phone_number": null,
+      "skills": [],
+      "pengalaman": []
+    },
+    {
+      "username": "joko",
+      "email": "joko@example.com",
+      "phone_number": null,
+      "skills": [],
+      "pengalaman": []
+    },
+    {
+      "username": "sumbul",
+      "email": "sumbul@example.com",
+      "phone_number": null,
+      "skills": [],
+      "pengalaman": []
+    },
+    {
+      "username": "sumanto",
+      "email": "sumanto@example.com",
+      "phone_number": null,
+      "skills": [],
+      "pengalaman": []
+    },
+    {
+      "username": "alexander",
+      "email": "alexander@example.com",
+      "phone_number": null,
+      "skills": [],
+      "pengalaman": []
+    },
+    {
+      "username": "gabriel",
+      "email": "gabriel@example.com",
+      "phone_number": null,
+      "skills": [],
+      "pengalaman": []
+    }
+  ],
+  "profesi": [
+    {
+      "kategori": "Technology & Data",
+      "nama_profesi": "Data Analyst",
+      "deskripsi": "A Data Analyst processes and interprets data to help companies make informed decisions. A great fit for those who enjoy patterns, numbers, and visualization.",
+      "kriteria_skill": "Team Work, Data Visualization, SQL, Python, Data Analysis, Excel, Power BI, Tableau, Communication",
+      "status": "Popular",
+      "tingkat_permintaan": "High",
+      "cara_bergabung": "Master SQL & Python → build a portfolio on Kaggle → stay active on LinkedIn → apply for internships at companies open to fresh graduates.",
+      "burnout_rate": 70,
+      "gaji_min_juta": 6.0,
+      "gaji_max_juta": 15.0,
+      "rating": 4.3,
+      "rutinitas": [
+        {
+          "jam": "09.00 - 11.00",
+          "kegiatan": "Daily Standup",
+          "deskripsi": "Sinkronisasi singkat tim data untuk berbagi progres analisis, blocker, dan prioritas hari ini."
+        },
+        {
+          "jam": "11.30 - 13.00",
+          "kegiatan": "Code Review",
+          "deskripsi": "Meninjau notebook dan query rekan agar logika analisis benar dan mudah dipelihara."
+        },
+        {
+          "jam": "13.00 - 14.00",
+          "kegiatan": "Deep Work Coding",
+          "deskripsi": "Fokus membersihkan data, membuat query, dan menyusun dashboard tanpa gangguan."
+        },
+        {
+          "jam": "14.30 - 15.30",
+          "kegiatan": "Lunch Break",
+          "deskripsi": "Istirahat makan siang untuk mengisi ulang energi."
+        },
+        {
+          "jam": "15.30 - 17.00",
+          "kegiatan": "Sprint Planning",
+          "deskripsi": "Merencanakan kebutuhan data dan tugas analisis sprint berikutnya bersama tim produk."
+        },
+        {
+          "jam": "17.00 - 18.00",
+          "kegiatan": "Bug Fixing",
+          "deskripsi": "Memperbaiki anomali data, query yang salah, atau dashboard yang menampilkan angka keliru."
+        }
+      ],
+      "proyek": [
+        {
+          "nama_proyek": "Dashboard Analitik Penjualan",
+          "deskripsi": "Membangun dashboard penjualan dari kebutuhan bisnis sampai siap dipakai manajemen. Estimasi 4 minggu.",
+          "fase": [
+            {
+              "urutan": 1,
+              "nama_fase": "Requirement",
+              "deskripsi": "Analisis kebutuhan sistem: menggali pertanyaan bisnis, metrik, sumber data, dan definisi yang disepakati.",
+              "ringkasan": "Analisis kebutuhan sistem",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 1",
+              "ikon": "doc"
+            },
+            {
+              "urutan": 2,
+              "nama_fase": "System Design",
+              "deskripsi": "Desain basis data & arsitektur: merancang data warehouse, model data, dan alur ETL.",
+              "ringkasan": "Desain basis data & arsitektur",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 1",
+              "ikon": "design"
+            },
+            {
+              "urutan": 3,
+              "nama_fase": "Development",
+              "deskripsi": "Implementasi fitur inti: membangun pipeline, query, dan dashboard.",
+              "ringkasan": "Implementasi fitur inti",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 2",
+              "ikon": "code"
+            },
+            {
+              "urutan": 4,
+              "nama_fase": "Testing",
+              "deskripsi": "Pengujian & QA: memvalidasi akurasi data dan kesesuaian angka dengan sumber.",
+              "ringkasan": "Pengujian & QA",
+              "durasi": "3 hari",
+              "sprint": "Sprint 3",
+              "ikon": "bug"
+            },
+            {
+              "urutan": 5,
+              "nama_fase": "Deployment",
+              "deskripsi": "Rilis ke produksi: merilis dashboard ke stakeholder dan memantau kualitas datanya.",
+              "ringkasan": "Rilis ke produksi",
+              "durasi": "2 hari",
+              "sprint": "Sprint 3",
+              "ikon": "rocket"
+            }
+          ]
+        }
+      ],
+      "reviews": [
+        {
+          "username": "messi",
+          "rating": 5,
+          "tanggal": "2026-10-01",
+          "isi_ulasan": "The coolest job ever. I've been there for over 20 years and have never regretted it!"
+        },
+        {
+          "username": "joko",
+          "rating": 4,
+          "tanggal": "2026-10-02",
+          "isi_ulasan": "This profession is very open to people from various educational background."
+        }
+      ]
+    },
+    {
+      "kategori": "Technology & Data",
+      "nama_profesi": "Data Scientist",
+      "deskripsi": "A Data Scientist builds statistical and machine learning models to uncover insights and predict outcomes from large datasets.",
+      "kriteria_skill": "Python, Machine Learning, Statistics, SQL, Data Visualization, Communication",
+      "status": "Competitive",
+      "tingkat_permintaan": "High",
+      "cara_bergabung": "Strengthen math & statistics → learn Python and machine learning → complete end-to-end ML projects → apply for junior data science roles.",
+      "burnout_rate": 65,
+      "gaji_min_juta": 10.0,
+      "gaji_max_juta": 25.0,
+      "rating": 4.4,
+      "rutinitas": [],
+      "proyek": [],
+      "reviews": []
+    },
+    {
+      "kategori": "Technology & Data",
+      "nama_profesi": "Data Engineer",
+      "deskripsi": "A Data Engineer designs and maintains data pipelines and infrastructure so that data is reliable and ready to be analyzed.",
+      "kriteria_skill": "SQL, Python, ETL, Data Warehousing, Cloud Computing, Linux",
+      "status": "Emerging",
+      "tingkat_permintaan": "High",
+      "cara_bergabung": "Learn SQL & Python → understand ETL and data warehousing → build pipeline projects on the cloud → apply for junior data engineer roles.",
+      "burnout_rate": 60,
+      "gaji_min_juta": 9.0,
+      "gaji_max_juta": 22.0,
+      "rating": 4.2,
+      "rutinitas": [],
+      "proyek": [],
+      "reviews": []
+    },
+    {
+      "kategori": "Business & Consulting",
+      "nama_profesi": "Business Analyst",
+      "deskripsi": "A Business Analyst bridges business needs and technical solutions, analyzing processes and requirements to help a company work more efficiently. Ideal for those who enjoy problem-solving and working with people.",
+      "kriteria_skill": "Problem Solving, Requirements Analysis, Agile, Process Modeling, Excel, Documentation, Communication, Stakeholder Management, SQL",
+      "status": "Stable",
+      "tingkat_permintaan": "Steady",
+      "cara_bergabung": "Learn business process modeling & requirements gathering → master SQL and Excel → earn a certification (CBAP/BABOK) → build case studies → apply for junior BA roles.",
+      "burnout_rate": 70,
+      "gaji_min_juta": 10.0,
+      "gaji_max_juta": 22.0,
+      "rating": 4.4,
+      "rutinitas": [
+        {
+          "jam": "09.00 - 11.00",
+          "kegiatan": "Daily Briefing & Email",
+          "deskripsi": "Membaca email, agenda, dan kabar dari stakeholder untuk menentukan prioritas kerja."
+        },
+        {
+          "jam": "11.30 - 13.00",
+          "kegiatan": "Review Proses Bisnis",
+          "deskripsi": "Meninjau alur proses bisnis berjalan untuk menemukan titik lemah dan peluang perbaikan."
+        },
+        {
+          "jam": "13.00 - 14.00",
+          "kegiatan": "Analisis Data Penjualan",
+          "deskripsi": "Mengolah data penjualan untuk menghasilkan insight pendukung keputusan bisnis."
+        },
+        {
+          "jam": "14.30 - 15.30",
+          "kegiatan": "Lunch Break",
+          "deskripsi": "Istirahat makan siang untuk mengisi ulang energi."
+        },
+        {
+          "jam": "15.30 - 17.00",
+          "kegiatan": "Meeting Stakeholder",
+          "deskripsi": "Berdiskusi dengan stakeholder untuk menyelaraskan kebutuhan, ekspektasi, dan ruang lingkup."
+        },
+        {
+          "jam": "17.00 - 18.00",
+          "kegiatan": "Dokumentasi Requirement",
+          "deskripsi": "Menuangkan kebutuhan ke dokumen requirement dan user story agar jelas bagi tim teknis."
+        }
+      ],
+      "proyek": [
+        {
+          "nama_proyek": "Optimasi Proses Order-to-Cash",
+          "deskripsi": "Memetakan dan memperbaiki proses pemesanan hingga pembayaran agar lebih efisien. Estimasi 4 minggu.",
+          "fase": [
+            {
+              "urutan": 1,
+              "nama_fase": "Identifikasi Masalah",
+              "deskripsi": "Menggali akar masalah lewat wawancara user dan data awal.",
+              "ringkasan": "Menggali akar masalah",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 1",
+              "ikon": "search"
+            },
+            {
+              "urutan": 2,
+              "nama_fase": "Pemetaan Proses",
+              "deskripsi": "Memetakan proses bisnis saat ini (as-is) secara detail.",
+              "ringkasan": "Memetakan proses as-is",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 1",
+              "ikon": "task"
+            },
+            {
+              "urutan": 3,
+              "nama_fase": "Analisis Gap",
+              "deskripsi": "Membandingkan proses berjalan dengan kondisi ideal untuk mengidentifikasi inefisiensi.",
+              "ringkasan": "Mencari inefisiensi proses",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 2",
+              "ikon": "trend"
+            },
+            {
+              "urutan": 4,
+              "nama_fase": "Rekomendasi",
+              "deskripsi": "Menyusun usulan perbaikan proses (to-be) beserta dampak dan prioritasnya.",
+              "ringkasan": "Usulan proses to-be",
+              "durasi": "3 hari",
+              "sprint": "Sprint 3",
+              "ikon": "idea"
+            },
+            {
+              "urutan": 5,
+              "nama_fase": "Implementasi",
+              "deskripsi": "Mendampingi penerapan perbaikan bersama tim dan mengevaluasi hasilnya.",
+              "ringkasan": "Penerapan & evaluasi",
+              "durasi": "2 hari",
+              "sprint": "Sprint 3",
+              "ikon": "rocket"
+            }
+          ]
+        }
+      ],
+      "reviews": [
+        {
+          "username": "sumbul",
+          "rating": 2,
+          "tanggal": "2026-10-03",
+          "isi_ulasan": "The worst job ever. I've been there for over 10 years and regretted it!"
+        },
+        {
+          "username": "sumanto",
+          "rating": 4,
+          "tanggal": "2026-10-04",
+          "isi_ulasan": "This profession is very open to people from various educational background."
+        }
+      ]
+    },
+    {
+      "kategori": "Business & Consulting",
+      "nama_profesi": "SAP Consultant",
+      "deskripsi": "An SAP Consultant implements and configures SAP systems so that a company's business processes run in one integrated platform.",
+      "kriteria_skill": "SAP, Business Process, ERP, Problem Solving, Communication, Documentation",
+      "status": "Competitive",
+      "tingkat_permintaan": "Steady",
+      "cara_bergabung": "Understand business processes → take an SAP module course → earn an SAP certification → join a consulting firm as a junior consultant.",
+      "burnout_rate": 65,
+      "gaji_min_juta": 12.0,
+      "gaji_max_juta": 30.0,
+      "rating": 4.1,
+      "rutinitas": [],
+      "proyek": [],
+      "reviews": []
+    },
+    {
+      "kategori": "Design & Creative",
+      "nama_profesi": "UI/UX Designer",
+      "deskripsi": "A UI/UX Designer crafts intuitive, attractive digital experiences by researching users and designing interfaces that are both functional and delightful. Perfect for creative thinkers who love solving user problems.",
+      "kriteria_skill": "User Research, Design Systems, Usability Testing, Wireframing, Figma, Visual Design, Prototyping, Interaction Design, Communication",
+      "status": "Competitive",
+      "tingkat_permintaan": "High",
+      "cara_bergabung": "Learn design fundamentals & Figma → study UX research methods → build a portfolio with real case studies → join design communities → apply for junior or internship roles.",
+      "burnout_rate": 70,
+      "gaji_min_juta": 8.0,
+      "gaji_max_juta": 20.0,
+      "rating": 4.5,
+      "rutinitas": [
+        {
+          "jam": "09.00 - 11.00",
+          "kegiatan": "Daily Standup",
+          "deskripsi": "Sinkronisasi singkat tim desain untuk berbagi progres, blocker, dan prioritas hari ini."
+        },
+        {
+          "jam": "11.30 - 13.00",
+          "kegiatan": "Review Desain & Feedback",
+          "deskripsi": "Mempresentasikan desain dan mengumpulkan feedback dari tim produk dan engineering."
+        },
+        {
+          "jam": "13.00 - 14.00",
+          "kegiatan": "Eksplorasi Wireframe",
+          "deskripsi": "Mengeksplorasi beberapa alternatif wireframe untuk fitur baru."
+        },
+        {
+          "jam": "14.30 - 15.30",
+          "kegiatan": "Lunch Break",
+          "deskripsi": "Istirahat makan siang untuk mengisi ulang energi."
+        },
+        {
+          "jam": "15.30 - 17.00",
+          "kegiatan": "Usability Testing",
+          "deskripsi": "Menguji prototype langsung ke pengguna untuk menemukan hambatan pemakaian."
+        },
+        {
+          "jam": "17.00 - 18.00",
+          "kegiatan": "Revisi & Handoff",
+          "deskripsi": "Merevisi desain dari hasil testing lalu menyerahkan spesifikasi ke developer."
+        }
+      ],
+      "proyek": [
+        {
+          "nama_proyek": "Redesign Aplikasi Mobile",
+          "deskripsi": "Mendesain ulang pengalaman aplikasi mobile berdasarkan riset pengguna. Estimasi 4 minggu.",
+          "fase": [
+            {
+              "urutan": 1,
+              "nama_fase": "Riset Pengguna",
+              "deskripsi": "Memahami pengguna lewat wawancara dan survei untuk menemukan masalah dan tujuan mereka.",
+              "ringkasan": "Wawancara & survei pengguna",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 1",
+              "ikon": "search"
+            },
+            {
+              "urutan": 2,
+              "nama_fase": "Arsitektur Informasi",
+              "deskripsi": "Menyusun user flow dan sitemap sebagai kerangka navigasi aplikasi.",
+              "ringkasan": "User flow & sitemap",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 1",
+              "ikon": "task"
+            },
+            {
+              "urutan": 3,
+              "nama_fase": "Wireframing",
+              "deskripsi": "Membuat wireframe low-fidelity untuk menguji struktur dan alur layar.",
+              "ringkasan": "Wireframe low-fidelity",
+              "durasi": "1 minggu",
+              "sprint": "Sprint 2",
+              "ikon": "design"
+            },
+            {
+              "urutan": 4,
+              "nama_fase": "UI Design",
+              "deskripsi": "Membangun UI high-fidelity dan design system yang konsisten.",
+              "ringkasan": "UI high-fidelity & design system",
+              "durasi": "3 hari",
+              "sprint": "Sprint 3",
+              "ikon": "design"
+            },
+            {
+              "urutan": 5,
+              "nama_fase": "Prototype & Testing",
+              "deskripsi": "Membuat prototype interaktif dan mengujinya dengan pengguna sebelum handoff.",
+              "ringkasan": "Uji prototype dengan pengguna",
+              "durasi": "2 hari",
+              "sprint": "Sprint 3",
+              "ikon": "bug"
+            }
+          ]
+        }
+      ],
+      "reviews": [
+        {
+          "username": "alexander",
+          "rating": 5,
+          "tanggal": "2026-10-05",
+          "isi_ulasan": "The craziest job ever. I've been there for a long time and I'm happy."
+        },
+        {
+          "username": "gabriel",
+          "rating": 4,
+          "tanggal": "2026-10-06",
+          "isi_ulasan": "This profession is very open to people from various educational background."
+        }
+      ]
+    },
+    {
+      "kategori": "Design & Creative",
+      "nama_profesi": "Content Writer",
+      "deskripsi": "A Content Writer creates engaging written content for websites, social media, and campaigns to inform and attract an audience.",
+      "kriteria_skill": "Copywriting, Story Telling, SEO, Research, Communication",
+      "status": "Emerging",
+      "tingkat_permintaan": "Steady",
+      "cara_bergabung": "Practice writing regularly → build a writing portfolio or blog → learn SEO basics → apply for content writer internships.",
+      "burnout_rate": 55,
+      "gaji_min_juta": 5.0,
+      "gaji_max_juta": 12.0,
+      "rating": 4.0,
+      "rutinitas": [],
+      "proyek": [],
+      "reviews": []
+    }
+  ],
+  "bookmarks": [
+    {
+      "username": "christinerotua",
+      "profesi": "Data Analyst",
+      "tanggal_ditandai": "2026-11-01"
+    }
+  ]
+}

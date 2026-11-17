@@ -162,6 +162,6 @@ class ProfessionController extends Controller
     /** @return list<string> */
     private function daftarFilter(): array
     {
-        return array_merge(['All'], KategoriProfesi::orderBy('id')->pluck('nama_kategori')->all());
+        return array_merge(['All'], KategoriProfesi::orderBy('id')->get()->map->singkat()->all());
     }
 }

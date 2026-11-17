@@ -9,11 +9,44 @@ class RutinitasHarian extends Model
 {
     protected $table = 'rutinitas_harian';
 
+    public $timestamps = false;
+
     protected $fillable = ['profesi_id', 'jam', 'kegiatan', 'deskripsi', 'ikon'];
 
     public function profesi(): BelongsTo
     {
         return $this->belongsTo(Profesi::class);
+    }
+
+    /** Ikon dari kolom tambahan UI; kalau kosong ditebak dari nama kegiatan. */
+    public function getIkonAttribute(?string $nilai): string
+    {
+        return $nilai ?: self::tebakIkon($this->kegiatan ?? '');
+    }
+
+    public static function tebakIkon(string $kegiatan): string
+    {
+        $k = mb_strtolower($kegiatan);
+        $aturan = [
+            'break' => ['lunch', 'istirahat', 'break'],
+            'bug' => ['bug', 'fixing'],
+            'code' => ['code', 'coding'],
+            'doc' => ['dokumentasi', 'requirement', 'email', 'doc'],
+            'chat' => ['review', 'feedback', 'stakeholder', 'interview'],
+            'meeting' => ['standup', 'meeting', 'briefing', 'planning'],
+            'design' => ['wireframe', 'desain', 'design', 'eksplorasi'],
+            'search' => ['testing', 'research', 'riset'],
+            'trend' => ['analisis', 'data'],
+        ];
+        foreach ($aturan as $ikon => $kata) {
+            foreach ($kata as $w) {
+                if (str_contains($k, $w)) {
+                    return $ikon;
+                }
+            }
+        }
+
+        return 'task';
     }
 
     public function jamMulai(): string

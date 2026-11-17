@@ -5,107 +5,96 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Skema mengikuti Updated Domain Model (ER-Diagram) CDR KARIRIS Kelompok 7.
- * Kolom bertanda "tambahan UI" tidak ada di ERD, tetapi dibutuhkan tampilan Hi-Fi Figma.
+ * Skema inti mengikuti tabel Supabase tim KARIRIS (ERD CDR Kelompok 7).
+ * Idempoten: tabel yang sudah ada di Supabase dilewati, jadi data tim tidak tersentuh.
+ * Kolom tambahan khusus tampilan Figma ada di migration add_ui_columns.
  */
 return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('skill', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
-            $table->string('nama_skill', 60);
-            $table->string('level', 20); // Basic | Intermediate | Advanced
-            $table->timestamps();
+        $this->buat('skill', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
+            $t->string('nama_skill', 100);
+            $t->string('level', 20); // Basic | Intermediate | Advanced
+            $t->timestamps();
+            $t->unique(['akun_profil_id', 'nama_skill']);
         });
 
-        Schema::create('pengalaman', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
-            $table->string('tipe', 30); // tambahan UI: Internship, Organization, ...
-            $table->string('posisi', 100);
-            $table->string('perusahaan', 100);
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai')->nullable();
-            $table->text('deskripsi')->nullable();
-            $table->timestamps();
+        $this->buat('pengalaman', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
+            $t->string('tipe', 20); // Internship | Organization | Freelance | Part-time | Full-time | Volunteer
+            $t->string('posisi', 150);
+            $t->string('perusahaan', 150);
+            $t->date('tanggal_mulai');
+            $t->date('tanggal_selesai')->nullable();
+            $t->text('deskripsi')->nullable();
+            $t->timestamps();
         });
 
-        Schema::create('kategori_profesi', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_kategori', 40); // label filter: Technology, Business, Creative
-            $table->string('label', 60);         // tambahan UI: "Technology & Data"
-            $table->timestamps();
+        $this->buat('kategori_profesi', function (Blueprint $t) {
+            $t->id();
+            $t->string('nama_kategori', 100)->unique();
         });
 
-        Schema::create('profesi', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('kategori_profesi_id')->constrained('kategori_profesi')->cascadeOnDelete();
-            $table->string('nama_profesi', 80);
-            $table->text('deskripsi');
-            $table->text('kriteria_skill'); // dipisah koma
-            // tambahan UI
-            $table->string('slug', 80)->unique();
-            $table->string('gambar')->nullable();
-            $table->string('status', 20)->default('Popular'); // Popular | Competitive | Emerging | Stable
-            $table->string('gaji', 30)->nullable();
-            $table->string('demand', 20)->nullable();
-            $table->text('cara_bergabung')->nullable();
-            $table->unsignedTinyInteger('burnout_rate')->default(50);
-            $table->timestamps();
+        $this->buat('profesi', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('kategori_profesi_id')->constrained('kategori_profesi')->restrictOnDelete();
+            $t->string('nama_profesi', 150)->unique();
+            $t->text('deskripsi');
+            $t->text('kriteria_skill'); // dipisah koma
+            $t->string('status', 20)->nullable(); // Popular | Competitive | Emerging | Stable
+            $t->decimal('gaji_min_juta', 6, 1)->nullable();
+            $t->decimal('gaji_max_juta', 6, 1)->nullable();
+            $t->string('tingkat_permintaan', 20)->nullable(); // High | Steady | ...
+            $t->decimal('rating', 2, 1)->nullable();
+            $t->text('cara_bergabung')->nullable();
+            $t->smallInteger('burnout_rate')->nullable();
+            $t->timestamps();
         });
 
-        Schema::create('bookmarked_profesi', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
-            $table->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
-            $table->date('tanggal_ditandai');
-            $table->timestamps();
-            $table->unique(['akun_profil_id', 'profesi_id']);
+        $this->buat('bookmarked_profesi', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
+            $t->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
+            $t->date('tanggal_ditandai');
+            $t->unique(['akun_profil_id', 'profesi_id']);
         });
 
-        Schema::create('career_review', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
-            $table->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
-            $table->text('isi_ulasan');
-            $table->unsignedTinyInteger('rating');
-            $table->date('tanggal');
-            $table->string('jabatan_reviewer', 80)->nullable(); // tambahan UI: "Blackrock 2000 - Present"
-            $table->timestamps();
+        $this->buat('career_review', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
+            $t->foreignId('akun_profil_id')->constrained('akun_profil')->cascadeOnDelete();
+            $t->text('isi_ulasan');
+            $t->smallInteger('rating');
+            $t->date('tanggal');
+            $t->timestamps();
         });
 
-        Schema::create('rutinitas_harian', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
-            $table->string('jam', 20); // "09.00 - 11.00"
-            $table->string('kegiatan', 80);
-            $table->text('deskripsi');
-            $table->string('ikon', 20)->default('task'); // tambahan UI
-            $table->timestamps();
+        $this->buat('rutinitas_harian', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
+            $t->string('jam', 20); // "09.00 - 11.00"
+            $t->string('kegiatan', 150);
+            $t->text('deskripsi')->nullable();
         });
 
-        Schema::create('proyek', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
-            $table->string('nama_proyek', 100);
-            $table->text('deskripsi');
-            $table->timestamps();
+        $this->buat('proyek', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('profesi_id')->constrained('profesi')->cascadeOnDelete();
+            $t->string('nama_proyek', 150);
+            $t->text('deskripsi')->nullable();
         });
 
-        Schema::create('fase_kerja', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('proyek_id')->constrained('proyek')->cascadeOnDelete();
-            $table->unsignedTinyInteger('urutan');
-            $table->string('nama_fase', 60);
-            $table->text('deskripsi');
-            // tambahan UI
-            $table->string('ringkasan', 80)->nullable();
-            $table->string('durasi', 20)->nullable();
-            $table->string('sprint', 20)->nullable();
-            $table->string('ikon', 20)->default('task');
-            $table->timestamps();
+        $this->buat('fase_kerja', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('proyek_id')->constrained('proyek')->cascadeOnDelete();
+            $t->smallInteger('urutan');
+            $t->string('nama_fase', 150);
+            $t->text('deskripsi')->nullable();
+            $t->unique(['proyek_id', 'urutan']);
         });
     }
 
@@ -113,6 +102,13 @@ return new class extends Migration
     {
         foreach (['fase_kerja', 'proyek', 'rutinitas_harian', 'career_review', 'bookmarked_profesi', 'profesi', 'kategori_profesi', 'pengalaman', 'skill'] as $t) {
             Schema::dropIfExists($t);
+        }
+    }
+
+    private function buat(string $tabel, Closure $definisi): void
+    {
+        if (! Schema::hasTable($tabel)) {
+            Schema::create($tabel, $definisi);
         }
     }
 };
