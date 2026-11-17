@@ -49,16 +49,24 @@ class AkunTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_login_dengan_username_atau_email(): void
+    public function test_login_butuh_account_name_email_dan_password(): void
     {
-        $this->post('/login', ['username' => 'christinerotua', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])->assertRedirect(route('welcome'));
-        $this->post('/logout');
-        $this->post('/login', ['username' => '5026241000@its.ac.id', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])->assertRedirect(route('welcome'));
+        $this->get('/login')->assertSee('Account name')->assertSee('Email')->assertSee('Password');
+        $this->post('/login', ['username' => 'christinerotua', 'email' => '5026241000@its.ac.id', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])
+            ->assertRedirect(route('welcome'));
     }
 
-    public function test_login_gagal_dengan_password_salah(): void
+    public function test_login_gagal_kalau_salah_satu_tidak_cocok(): void
     {
-        $this->post('/login', ['username' => 'christinerotua', 'password' => 'salah'])->assertSessionHasErrors('username');
+        // email milik akun lain
+        $this->post('/login', ['username' => 'christinerotua', 'email' => 'messi@example.com', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])
+            ->assertSessionHasErrors('username');
+        // password salah
+        $this->post('/login', ['username' => 'christinerotua', 'email' => '5026241000@its.ac.id', 'password' => 'salah'])
+            ->assertSessionHasErrors('username');
+        // email tidak boleh digabung ke kolom account name
+        $this->post('/login', ['username' => '5026241000@its.ac.id', 'password' => \Database\Seeders\DatabaseSeeder::PASSWORD_DEMO])
+            ->assertSessionHasErrors('email');
         $this->assertGuest();
     }
 
@@ -142,6 +150,6 @@ class AkunTest extends TestCase
         $this->actingAs($akun)->put('/settings/password', ['password' => 'baru12345', 'password_confirmation' => 'baru12345'])
             ->assertSessionHas('toast', 'Password Updated');
         $this->post('/logout');
-        $this->post('/login', ['username' => 'christinerotua', 'password' => 'baru12345'])->assertRedirect(route('welcome'));
+        $this->post('/login', ['username' => 'christinerotua', 'email' => '5026241000@its.ac.id', 'password' => 'baru12345'])->assertRedirect(route('welcome'));
     }
 }

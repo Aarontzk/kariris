@@ -52,13 +52,14 @@ class AkunController extends Controller
     public function login(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'email', 'max:255'],
             'password' => ['required', 'string'],
         ]);
 
-        $field = filter_var($data['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        if (! Auth::attempt([$field => $data['username'], 'password' => $data['password']], $request->boolean('remember'))) {
-            return back()->withErrors(['username' => 'Username atau password salah.'])->onlyInput('username');
+        // Sesuai Figma Login Page: account name, email, dan password diisi terpisah dan ketiganya harus cocok.
+        if (! Auth::attempt($data, $request->boolean('remember'))) {
+            return back()->withErrors(['username' => 'Account name, email, atau password salah.'])->onlyInput('username', 'email');
         }
         $request->session()->regenerate();
 

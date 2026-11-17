@@ -7,8 +7,8 @@
     <img src="{{ asset('img/logo-wordmark.png') }}" alt="KARIRIS" class="landing__word">
     <p class="landing__tag">KNOW YOUR CAREER</p>
     <div class="landing__actions">
-        <a href="{{ route('login') }}" class="btn-white">Log in</a>
-        <a href="{{ route('register') }}" class="btn-white">Sign in</a>
+        <a href="{{ route('login') }}" class="btn-grad">Log in</a>
+        <a href="{{ route('register') }}" class="btn-grad">Sign in</a>
     </div>
 </div>
 @endsection

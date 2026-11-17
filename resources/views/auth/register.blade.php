@@ -2,8 +2,8 @@
 @section('title', 'Sign in')
 @section('app-class', 'app--page app--nonav')
 @section('body')
-<div class="auth" style="padding-top:48px">
-    <img src="{{ asset('img/logo-horizontal.png') }}" alt="KARIRIS" class="auth__logo" style="margin-bottom:20px">
+<div class="auth">
+    <img src="{{ asset('img/logo-horizontal.png') }}" alt="KARIRIS" class="auth__logo">
     <form method="POST" action="{{ route('register') }}" novalidate>
         @csrf
         @foreach ([
@@ -18,8 +18,8 @@
                    @unless (str_starts_with($name, 'password')) value="{{ old($name) }}" @endunless required>
             @error($name)<p class="error">{{ $message }}</p>@enderror
         @endforeach
+        <div class="auth__spacer"></div>
         <button class="btn-grad" type="submit">Sign in</button>
-        <p class="auth__note">Already have account? <a href="{{ route('login') }}">Log in here</a></p>
     </form>
 </div>
 @endsection
